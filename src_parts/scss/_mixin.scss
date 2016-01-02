@@ -1,0 +1,140 @@
+@import 'settings';
+
+// [ Get Rem ]
+@mixin getRem($size){
+  font-size: $size + px;
+  font-size: ($size / 10) * 1rem;
+};
+
+// [ Get Rem Forced ]
+@mixin getRemForced($size) {
+  font-size: $size + px !important;
+  font-size: ($size / 10) * 1rem !important;
+};
+
+// [ Get Sp Buffer Via Px ]
+@function getPercent($pxSizeFor640){
+  @return ($pxSizeFor640 / 640) * 100 + %;
+};
+
+// [ Opacity ]
+@mixin handleOpacity($opacityRate:0.6){
+  opacity: $opacityRate;
+  filter: alpha(opacity=($opacityRate * 100));
+};
+
+// [ Box-Sizing ]
+@mixin defaultBoxSizing(){
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+};
+
+// [ Center x Center]
+@mixin toCenterCenter(){
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+};
+
+// [ Lacky 3d ]
+@mixin lackyFor3d(){
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+};
+
+// For Vender Prefix
+// @include setPrefix(NAME, VALUE);
+@mixin setPrefix($name, $argument){
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+};
+
+// For Keyframes
+// @include setKeyframes(NAME){
+//      VALUES
+// }
+@mixin setKeyframes($name){
+  @-webkit-keyframes #{$name}{
+    @content;
+  }
+  @-moz-keyframes #{$name}{
+    @content;
+  }
+  @-ms-keyframes #{$name}{
+    @content;
+  }
+  @keyframes #{$name}{
+    @content;
+  }
+};
+
+// =================================================================
+// Filter - Start
+// =================================================================
+
+// [ Blur - ぼかし ]
+// @include blur();
+@mixin blur($rate:4){
+  @include setPrefix('filter', 'blur(' + $rate + 'px)');
+};
+
+// [ Drop Shadow - 影 ]
+// @include dropShadow();
+@mixin dropShadow($rate:4, $color:#000){
+  @include setPrefix('filter', 'drop-shadow(' + $rate + 'px ' + $rate + 'px ' + $rate + 'px ' + $color')');
+};
+
+// [ Invert - 階調反転 ]
+// @include invert();
+@mixin invert($rate:100){
+  @include setPrefix('filter', 'invert(' + $rate + '%)');
+};
+
+// [ Sepia - セピア ]
+// @include sepia();
+@mixin sepia($rate:100){
+  @include setPrefix('filter', 'sepia(' + $rate + '%)');
+};
+
+// [ Grayscale - 白黒 ]
+// @include grayscale();
+@mixin grayscale($rate:100){
+  @include setPrefix('filter', 'grayscale(' + $rate + '%)');
+};
+
+// [ Brightness - 明るさ ]
+// @include brightness();
+// ※100超えると、まぶしくなる！
+@mixin brightness($rate:100){
+  @include setPrefix('filter', 'brightness(' + $rate + '%)');
+};
+
+// [ Saturate - 彩度 ]
+// @include saturate();
+// ※100超えると、鮮やかになる！
+@mixin saturate($rate:100){
+  @include setPrefix('filter', 'saturate(' + $rate + '%)');
+};
+
+// [ Hue Rotate - 色相回転 ]
+// @include huaRotate();
+// ※0 - 360まで指定可能！
+@mixin huaRotate($rate:90){
+  @include setPrefix('filter', 'hue-rotate(' + $rate + 'deg)');
+};
+
+// [ Contrast - コントラスト ]
+// @include contrast();
+// ※100超えると、クッキリする！
+@mixin contrast($rate:100){
+  @include setPrefix('filter', 'contrast(' + $rate + '%)');
+};
+
+// =================================================================
+// Filter - End
+// =================================================================

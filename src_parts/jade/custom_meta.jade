@@ -1,0 +1,10 @@
+mixin metaInfo(metaObj)
+  meta(name='description'        , content=metaObj.description)
+  meta(name='keywords'           , content=metaObj.keywords)
+  meta(property='og:type'        , content='website')
+  meta(property='og:site_name'   , content=metaObj.og.site_name)
+  meta(property='og:title'       , content=metaObj.og.title)
+  meta(property='og:url'         , content=metaObj.og.url)
+  meta(property='og:image'       , content=metaObj.og.image)
+  meta(property='og:description' , content=metaObj.og.description)
+  title #{metaObj.title}

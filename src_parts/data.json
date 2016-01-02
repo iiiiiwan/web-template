@@ -1,0 +1,14 @@
+{
+  "template" : {
+    "title"       : "+++ TITLE +++",
+    "description" : "+++ DESCRIPTION +++",
+    "keywords"    : "+++ KEYWORDS +++",
+    "og"          : {
+      "title"       : "+++ [OG] TITLE +++",
+      "url"         : "+++ [OG] URL +++",
+      "image"       : "+++ [OG] IMAGE +++",
+      "site_name"   : "+++ [OG] SITE NAME +++",
+      "description" : "+++ [OG] DESCRIPTION +++"
+    }
+  }
+}

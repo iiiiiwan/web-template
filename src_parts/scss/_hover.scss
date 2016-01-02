@@ -1,0 +1,652 @@
+@import 'settings';
+@import 'mixin';
+
+// ========================================================
+// [ Hover - Handler - Common ]
+// ========================================================
+@mixin hoverHandler(){
+  &:hover,
+  &.___hover{
+    @content;
+  }
+};
+
+// [ Hover - Opacity ]
+@mixin hoverOpacity($rate){
+  @include hoverHandler(){
+    @include handleOpacity($rate);
+  };
+};
+
+// [ Hover - Transform ]
+@mixin hoverTransform($rate){
+  @include hoverHandler(){
+    -webkit-transform: translate3d($rate + px, $rate + px, 0);
+       -moz-transform: translate3d($rate + px, $rate + px, 0);
+        -ms-transform: translate3d($rate + px, $rate + px, 0);
+         -o-transform: translate3d($rate + px, $rate + px, 0);
+            transform: translate3d($rate + px, $rate + px, 0);
+  };
+};
+
+// =================================================================
+// Border - Start
+// =================================================================
+// ※block化して、領域固定する必要あり！
+// width: px;
+// height: px;
+// ※下記ダミー要素が共通で必須
+// <div class="bRoot">
+//   <div class="bT"></div>
+//   <div class="bR"></div>
+//   <div class="bB"></div>
+//   <div class="bL"></div>
+// </div>
+
+// [ Hover - Border - [ 1 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType1();
+// ※同時に一斉描画するタイプ！
+@mixin hoverBorderType1($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+      -webkit-transition: width $duration + s $easing 0s;
+         -moz-transition: width $duration + s $easing 0s;
+          -ms-transition: width $duration + s $easing 0s;
+           -o-transition: width $duration + s $easing 0s;
+              transition: width $duration + s $easing 0s;
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+      -webkit-transition: height $duration + s $easing 0s;
+         -moz-transition: height $duration + s $easing 0s;
+          -ms-transition: height $duration + s $easing 0s;
+           -o-transition: height $duration + s $easing 0s;
+              transition: height $duration + s $easing 0s;
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+      -webkit-transition: width $duration + s $easing 0s;
+         -moz-transition: width $duration + s $easing 0s;
+          -ms-transition: width $duration + s $easing 0s;
+           -o-transition: width $duration + s $easing 0s;
+              transition: width $duration + s $easing 0s;
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+      -webkit-transition: height $duration + s $easing 0s;
+         -moz-transition: height $duration + s $easing 0s;
+          -ms-transition: height $duration + s $easing 0s;
+           -o-transition: height $duration + s $easing 0s;
+              transition: height $duration + s $easing 0s;
+    }
+    @include hoverHandler(){
+      .bT{
+        width: 0;
+      }
+      .bR{
+        height: 0;
+      }
+      .bB{
+        width: 0;
+      }
+      .bL{
+        height: 0;
+      }
+    }
+  }
+};
+
+// [ Hover - Border - [ 2 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType2();
+// ※端から遅れて、描画するタイプ！
+// ※基本的に正方形の時しか、ダメかもしれぬやつ。
+@mixin hoverBorderType2($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+      -webkit-transition: width $duration + s $easing .3s;
+         -moz-transition: width $duration + s $easing .3s;
+          -ms-transition: width $duration + s $easing .3s;
+           -o-transition: width $duration + s $easing .3s;
+              transition: width $duration + s $easing .3s;
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+      -webkit-transition: height $duration + s $easing 0s;
+         -moz-transition: height $duration + s $easing 0s;
+          -ms-transition: height $duration + s $easing 0s;
+           -o-transition: height $duration + s $easing 0s;
+              transition: height $duration + s $easing 0s;
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+      -webkit-transition: width $duration + s $easing .1s;
+         -moz-transition: width $duration + s $easing .1s;
+          -ms-transition: width $duration + s $easing .1s;
+           -o-transition: width $duration + s $easing .1s;
+              transition: width $duration + s $easing .1s;
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+      -webkit-transition: height $duration + s $easing .2s;
+         -moz-transition: height $duration + s $easing .2s;
+          -ms-transition: height $duration + s $easing .2s;
+           -o-transition: height $duration + s $easing .2s;
+              transition: height $duration + s $easing .2s;
+    }
+    @include hoverHandler(){
+      .bT{
+        width: 0;
+      }
+      .bR{
+        height: 0;
+      }
+      .bB{
+        width: 0;
+      }
+      .bL{
+        height: 0;
+      }
+    }
+  }
+};
+
+// [ Hover - Border - [ 3 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType3();
+// ※一斉に拡張するタイプ！
+@mixin hoverBorderType3($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+      -webkit-transition: -webkit-transform $duration + s $easing 0s;
+         -moz-transition: -moz-transform $duration + s $easing 0s;
+          -ms-transition: -ms-transform $duration + s $easing 0s;
+           -o-transition: -o-transform $duration + s $easing 0s;
+              transition: transform $duration + s $easing 0s;
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+
+    }
+    @include hoverHandler(){
+      .bT{
+        -webkit-transform: translate3d(0, -20px, 0);
+           -moz-transform: translate3d(0, -20px, 0);
+            -ms-transform: translate3d(0, -20px, 0);
+             -o-transform: translate3d(0, -20px, 0);
+                transform: translate3d(0, -20px, 0);
+      }
+      .bR{
+        -webkit-transform: translate3d(20px, 0, 0);
+           -moz-transform: translate3d(20px, 0, 0);
+            -ms-transform: translate3d(20px, 0, 0);
+             -o-transform: translate3d(20px, 0, 0);
+                transform: translate3d(20px, 0, 0);
+      }
+      .bB{
+        -webkit-transform: translate3d(0, 20px, 0);
+           -moz-transform: translate3d(0, 20px, 0);
+            -ms-transform: translate3d(0, 20px, 0);
+             -o-transform: translate3d(0, 20px, 0);
+                transform: translate3d(0, 20px, 0);
+      }
+      .bL{
+        -webkit-transform: translate3d(-20px, 0, 0);
+           -moz-transform: translate3d(-20px, 0, 0);
+            -ms-transform: translate3d(-20px, 0, 0);
+             -o-transform: translate3d(-20px, 0, 0);
+                transform: translate3d(-20px, 0, 0);
+      }
+    }
+  }
+};
+
+// [ Hover - Border - [ 4 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType4();
+// ※一斉に伸縮するタイプ！
+@mixin hoverBorderType4($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+      -webkit-transition: -webkit-transform $duration + s $easing 0s;
+         -moz-transition: -moz-transform $duration + s $easing 0s;
+          -ms-transition: -ms-transform $duration + s $easing 0s;
+           -o-transition: -o-transform $duration + s $easing 0s;
+              transition: transform $duration + s $easing 0s;
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+
+    }
+    @include hoverHandler(){
+      .bT{
+        -webkit-transform: translate3d(0, 20px, 0);
+           -moz-transform: translate3d(0, 20px, 0);
+            -ms-transform: translate3d(0, 20px, 0);
+             -o-transform: translate3d(0, 20px, 0);
+                transform: translate3d(0, 20px, 0);
+      }
+      .bR{
+        -webkit-transform: translate3d(-20px, 0, 0);
+           -moz-transform: translate3d(-20px, 0, 0);
+            -ms-transform: translate3d(-20px, 0, 0);
+             -o-transform: translate3d(-20px, 0, 0);
+                transform: translate3d(-20px, 0, 0);
+      }
+      .bB{
+        -webkit-transform: translate3d(0, -20px, 0);
+           -moz-transform: translate3d(0, -20px, 0);
+            -ms-transform: translate3d(0, -20px, 0);
+             -o-transform: translate3d(0, -20px, 0);
+                transform: translate3d(0, -20px, 0);
+      }
+      .bL{
+        -webkit-transform: translate3d(20px, 0, 0);
+           -moz-transform: translate3d(20px, 0, 0);
+            -ms-transform: translate3d(20px, 0, 0);
+             -o-transform: translate3d(20px, 0, 0);
+                transform: translate3d(20px, 0, 0);
+      }
+    }
+  }
+};
+
+// [ Hover - Border - [ 5 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType5();
+// ※一斉に回転しながら伸縮するタイプ！
+// ※基本的に正方形の時しか、ダメかもしれぬやつ。
+@mixin hoverBorderType5($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+      -webkit-transition: -webkit-transform $duration + s $easing 0s;
+         -moz-transition: -moz-transform $duration + s $easing 0s;
+          -ms-transition: -ms-transform $duration + s $easing 0s;
+           -o-transition: -o-transform $duration + s $easing 0s;
+              transition: transform $duration + s $easing 0s;
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+
+    }
+    @include hoverHandler(){
+      .bT{
+        -webkit-transform: rotate(45deg) translate3d(0, 20px, 0);
+           -moz-transform: rotate(45deg) translate3d(0, 20px, 0);
+            -ms-transform: rotate(45deg) translate3d(0, 20px, 0);
+             -o-transform: rotate(45deg) translate3d(0, 20px, 0);
+                transform: rotate(45deg) translate3d(0, 20px, 0);
+      }
+      .bR{
+        -webkit-transform: rotate(45deg) translate3d(-20px, 0, 0);
+           -moz-transform: rotate(45deg) translate3d(-20px, 0, 0);
+            -ms-transform: rotate(45deg) translate3d(-20px, 0, 0);
+             -o-transform: rotate(45deg) translate3d(-20px, 0, 0);
+                transform: rotate(45deg) translate3d(-20px, 0, 0);
+      }
+      .bB{
+        -webkit-transform: rotate(45deg) translate3d(0, -20px, 0);
+           -moz-transform: rotate(45deg) translate3d(0, -20px, 0);
+            -ms-transform: rotate(45deg) translate3d(0, -20px, 0);
+             -o-transform: rotate(45deg) translate3d(0, -20px, 0);
+                transform: rotate(45deg) translate3d(0, -20px, 0);
+      }
+      .bL{
+        -webkit-transform: rotate(45deg) translate3d(20px, 0, 0);
+           -moz-transform: rotate(45deg) translate3d(20px, 0, 0);
+            -ms-transform: rotate(45deg) translate3d(20px, 0, 0);
+             -o-transform: rotate(45deg) translate3d(20px, 0, 0);
+                transform: rotate(45deg) translate3d(20px, 0, 0);
+      }
+    }
+  }
+};
+
+// [ Hover - Border - [ 6 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType6();
+// ※一斉に二重化！
+@mixin hoverBorderType6($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+      -webkit-transition: -webkit-transform $duration + s $easing 0s;
+         -moz-transition: -moz-transform $duration + s $easing 0s;
+          -ms-transition: -ms-transform $duration + s $easing 0s;
+           -o-transition: -o-transform $duration + s $easing 0s;
+              transition: transform $duration + s $easing 0s;
+      &:after{
+        content: '';
+        background: #000;
+        position: absolute;
+        -webkit-transition: -webkit-transform $duration + s $easing 0s;
+           -moz-transition: -moz-transform $duration + s $easing 0s;
+            -ms-transition: -ms-transform $duration + s $easing 0s;
+             -o-transition: -o-transform $duration + s $easing 0s;
+                transition: transform $duration + s $easing 0s;
+      }
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+      &:after{
+        width: 100%;
+        height: $size + px;
+        top: 0;
+        left: 0;
+      }
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+      &:after{
+        height: 100%;
+        width: $size + px;
+        right: 0;
+        top:0;
+      }
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+      &:after{
+        width: 100%;
+        height: $size + px;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+      &:after{
+        height: 100%;
+        width: $size + px;
+        left: 0;
+        bottom: 0;
+      }
+    }
+    @include hoverHandler(){
+      .bT{
+        -webkit-transform: translate3d(0, 5px, 0);
+           -moz-transform: translate3d(0, 5px, 0);
+            -ms-transform: translate3d(0, 5px, 0);
+             -o-transform: translate3d(0, 5px, 0);
+                transform: translate3d(0, 5px, 0);
+        &:after{
+          -webkit-transform: translate3d(0, -5px, 0);
+             -moz-transform: translate3d(0, -5px, 0);
+              -ms-transform: translate3d(0, -5px, 0);
+               -o-transform: translate3d(0, -5px, 0);
+                  transform: translate3d(0, -5px, 0);
+        }
+      }
+      .bR{
+        -webkit-transform: translate3d(-5px, 0, 0);
+           -moz-transform: translate3d(-5px, 0, 0);
+            -ms-transform: translate3d(-5px, 0, 0);
+             -o-transform: translate3d(-5px, 0, 0);
+                transform: translate3d(-5px, 0, 0);
+        &:after{
+          -webkit-transform: translate3d(5px, 0, 0);
+             -moz-transform: translate3d(5px, 0, 0);
+              -ms-transform: translate3d(5px, 0, 0);
+               -o-transform: translate3d(5px, 0, 0);
+                  transform: translate3d(5px, 0, 0);
+        }
+      }
+      .bB{
+        -webkit-transform: translate3d(0, -5px, 0);
+           -moz-transform: translate3d(0, -5px, 0);
+            -ms-transform: translate3d(0, -5px, 0);
+             -o-transform: translate3d(0, -5px, 0);
+                transform: translate3d(0, -5px, 0);
+        &:after{
+          -webkit-transform: translate3d(0, 5px, 0);
+             -moz-transform: translate3d(0, 5px, 0);
+              -ms-transform: translate3d(0, 5px, 0);
+               -o-transform: translate3d(0, 5px, 0);
+                  transform: translate3d(0, 5px, 0);
+        }
+      }
+      .bL{
+        -webkit-transform: translate3d(5px, 0, 0);
+           -moz-transform: translate3d(5px, 0, 0);
+            -ms-transform: translate3d(5px, 0, 0);
+             -o-transform: translate3d(5px, 0, 0);
+                transform: translate3d(5px, 0, 0);
+        &:after{
+          -webkit-transform: translate3d(-5px, 0, 0);
+             -moz-transform: translate3d(-5px, 0, 0);
+              -ms-transform: translate3d(-5px, 0, 0);
+               -o-transform: translate3d(-5px, 0, 0);
+                  transform: translate3d(-5px, 0, 0);
+        }
+      }
+    }
+  }
+};
+
+// [ Hover - Border - [ 7 ] ]
+// $size     - ボーダー幅 [2]
+// $duration - アニメーション間隔 [0.3]
+// $easing   - easingのタイプ名 [ease]
+// @include hoverBorderType7();
+// ※一斉に隅にドット化！
+@mixin hoverBorderType7($size:2, $duration:0.3, $easing:ease){
+  position: relative;
+  .bRoot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    div{
+      background: #000;
+      position: absolute;
+      -webkit-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
+         -moz-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
+          -ms-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
+           -o-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
+              transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
+    }
+    .bT{
+      width: 100%;
+      height: $size + px;
+      top: 0;
+      left: 0;
+    }
+    .bR{
+      height: 100%;
+      width: $size + px;
+      right: 0;
+      top:0;
+    }
+    .bB{
+      width: 100%;
+      height: $size + px;
+      bottom: 0;
+      right: 0;
+    }
+    .bL{
+      height: 100%;
+      width: $size + px;
+      left: 0;
+      bottom: 0;
+    }
+    @include hoverHandler(){
+      .bT,
+      .bR,
+      .bB,
+      .bL{
+        width: 5px;
+        height: 5px;
+      }
+    }
+  }
+};
+
+// =================================================================
+// Border - End
+// =================================================================

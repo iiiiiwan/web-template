@@ -1,0 +1,32 @@
+doctype html
+html
+
+  head
+
+    include /common_meta
+    include /custom_meta
+    +metaInfo(data.template)
+    link(rel='stylesheet', href='/assets/css/index.css')
+
+  body(style='opacity:0;')
+
+    include /header
+
+    div#content
+
+      h1 TEMPLATE
+
+      ul
+        li
+            p.sprite-1
+        li
+            p.sprite-2
+        li
+            p.sprite-3
+        li
+            p.sprite-4
+
+    include /footer
+
+    include /common_libs
+    script(type='text/javascript' src='/assets/js/index.js')

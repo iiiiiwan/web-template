@@ -1,0 +1,51 @@
+@import 'mixin';
+
+// [ Jumble ]
+@mixin jumble(){
+  @include setPrefix(animation-name, jumbleAnimation);
+  @include setPrefix(animation-duration, .1s);
+  @include setPrefix(animation-delay, 0s);
+  @include setPrefix(animation-timing-function, cubic-bezier(0, 1, 1, 1));
+  @include setPrefix(animation-iteration-count, 3);
+  @include setPrefix(animation-direction, normal);
+  @include setPrefix(animation-fill-mode, forwards);
+};
+
+// =================================================================
+// Key Frames - Start
+// =================================================================
+
+// [ Jumble ]
+@include setKeyframes(jumbleAnimation){
+  0%{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  40%{
+    -webkit-transform: translate3d(3px, 0, 0);
+       -moz-transform: translate3d(3px, 0, 0);
+        -ms-transform: translate3d(3px, 0, 0);
+         -o-transform: translate3d(3px, 0, 0);
+            transform: translate3d(3px, 0, 0);
+  }
+  80%{
+    -webkit-transform: translate3d(-3px, 0, 0);
+       -moz-transform: translate3d(-3px, 0, 0);
+        -ms-transform: translate3d(-3px, 0, 0);
+         -o-transform: translate3d(-3px, 0, 0);
+            transform: translate3d(-3px, 0, 0);
+  }
+  100%{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+};
+// =================================================================
+// Key Frames - End
+// =================================================================

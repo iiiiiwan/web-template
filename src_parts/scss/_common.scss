@@ -1,0 +1,55 @@
+@import 'settings';
+@import 'mixin';
+/*
+---------------------------------------------------------------------------------------
+    COMMON
+---------------------------------------------------------------------------------------
+*/
+::selection{
+  // background-color: hogehoge;
+}
+::-moz-selection{
+  // background-color: hogehoge;
+}
+html{
+  font-size: 62.5%;
+}
+html,
+body{
+  width: 100%;
+  height: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body{
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.w100{
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.fl_l{
+  float: left;
+}
+.fl_r{
+  float: right;
+}
+.clearfix:after{
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+  content: '.';
+}
+.ta_l{
+  text-align: left;
+}
+.ta_c{
+  text-align: center;
+}
+.ta_r{
+  text-align: right;
+}
