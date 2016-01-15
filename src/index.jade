@@ -1,12 +1,16 @@
 doctype html
+
 html
 
   head
 
     include /common_meta
+
     include /custom_meta
     +metaInfo(data.template)
-    link(rel='stylesheet', href='/assets/css/index.css')
+
+    include /custom_style
+    +styleInfo(data.template.style)
 
   body(style='opacity:0;')
 
@@ -14,19 +18,11 @@ html
 
     div#content
 
-      h1 TEMPLATE
-
-      ul
-        li
-            p.sprite-1
-        li
-            p.sprite-2
-        li
-            p.sprite-3
-        li
-            p.sprite-4
+      include /samples
 
     include /footer
 
     include /common_libs
-    script(type='text/javascript' src='/assets/js/index.js')
+
+    include /custom_script
+    +scriptInfo(data.template.script)

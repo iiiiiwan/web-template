@@ -1,4 +1,3 @@
-@import 'settings';
 @import 'mixin';
 
 // ========================================================
@@ -21,16 +20,12 @@
 // [ Hover - Transform ]
 @mixin hoverTransform($rate){
   @include hoverHandler(){
-    -webkit-transform: translate3d($rate + px, $rate + px, 0);
-       -moz-transform: translate3d($rate + px, $rate + px, 0);
-        -ms-transform: translate3d($rate + px, $rate + px, 0);
-         -o-transform: translate3d($rate + px, $rate + px, 0);
-            transform: translate3d($rate + px, $rate + px, 0);
+    @include setPrefix('transform', 'translate3d(' + $rate + 'px, ' + $rate + 'px, 0px)');
   };
 };
 
 // =================================================================
-// Border - Start
+// Border Animation
 // =================================================================
 // ※block化して、領域固定する必要あり！
 // width: px;
@@ -66,44 +61,28 @@
       height: $size + px;
       top: 0;
       left: 0;
-      -webkit-transition: width $duration + s $easing 0s;
-         -moz-transition: width $duration + s $easing 0s;
-          -ms-transition: width $duration + s $easing 0s;
-           -o-transition: width $duration + s $easing 0s;
-              transition: width $duration + s $easing 0s;
+      @include setPrefix('transition', 'width ' + $duration + 's ' + $easing + ' 0s');
     }
     .bR{
       height: 100%;
       width: $size + px;
       right: 0;
-      top:0;
-      -webkit-transition: height $duration + s $easing 0s;
-         -moz-transition: height $duration + s $easing 0s;
-          -ms-transition: height $duration + s $easing 0s;
-           -o-transition: height $duration + s $easing 0s;
-              transition: height $duration + s $easing 0s;
+      top: 0;
+      @include setPrefix('transition', 'height ' + $duration + 's ' + $easing + ' 0s');
     }
     .bB{
       width: 100%;
       height: $size + px;
       bottom: 0;
       right: 0;
-      -webkit-transition: width $duration + s $easing 0s;
-         -moz-transition: width $duration + s $easing 0s;
-          -ms-transition: width $duration + s $easing 0s;
-           -o-transition: width $duration + s $easing 0s;
-              transition: width $duration + s $easing 0s;
+      @include setPrefix('transition', 'width ' + $duration + 's ' + $easing + ' 0s');
     }
     .bL{
       height: 100%;
       width: $size + px;
       left: 0;
       bottom: 0;
-      -webkit-transition: height $duration + s $easing 0s;
-         -moz-transition: height $duration + s $easing 0s;
-          -ms-transition: height $duration + s $easing 0s;
-           -o-transition: height $duration + s $easing 0s;
-              transition: height $duration + s $easing 0s;
+      @include setPrefix('transition', 'height ' + $duration + 's ' + $easing + ' 0s');
     }
     @include hoverHandler(){
       .bT{
@@ -146,44 +125,28 @@
       height: $size + px;
       top: 0;
       left: 0;
-      -webkit-transition: width $duration + s $easing .3s;
-         -moz-transition: width $duration + s $easing .3s;
-          -ms-transition: width $duration + s $easing .3s;
-           -o-transition: width $duration + s $easing .3s;
-              transition: width $duration + s $easing .3s;
+      @include setPrefix('transition', 'width ' + $duration + 's ' + $easing + ' .3s');
     }
     .bR{
       height: 100%;
       width: $size + px;
       right: 0;
       top:0;
-      -webkit-transition: height $duration + s $easing 0s;
-         -moz-transition: height $duration + s $easing 0s;
-          -ms-transition: height $duration + s $easing 0s;
-           -o-transition: height $duration + s $easing 0s;
-              transition: height $duration + s $easing 0s;
+      @include setPrefix('transition', 'height ' + $duration + 's ' + $easing + ' 0s');
     }
     .bB{
       width: 100%;
       height: $size + px;
       bottom: 0;
       right: 0;
-      -webkit-transition: width $duration + s $easing .1s;
-         -moz-transition: width $duration + s $easing .1s;
-          -ms-transition: width $duration + s $easing .1s;
-           -o-transition: width $duration + s $easing .1s;
-              transition: width $duration + s $easing .1s;
+      @include setPrefix('transition', 'width ' + $duration + 's ' + $easing + ' .1s');
     }
     .bL{
       height: 100%;
       width: $size + px;
       left: 0;
       bottom: 0;
-      -webkit-transition: height $duration + s $easing .2s;
-         -moz-transition: height $duration + s $easing .2s;
-          -ms-transition: height $duration + s $easing .2s;
-           -o-transition: height $duration + s $easing .2s;
-              transition: height $duration + s $easing .2s;
+      @include setPrefix('transition', 'height ' + $duration + 's ' + $easing + ' .2s');
     }
     @include hoverHandler(){
       .bT{
@@ -252,32 +215,16 @@
     }
     @include hoverHandler(){
       .bT{
-        -webkit-transform: translate3d(0, -20px, 0);
-           -moz-transform: translate3d(0, -20px, 0);
-            -ms-transform: translate3d(0, -20px, 0);
-             -o-transform: translate3d(0, -20px, 0);
-                transform: translate3d(0, -20px, 0);
+        @include setPrefix('transform', 'translate3d(0, -20px, 0)');
       }
       .bR{
-        -webkit-transform: translate3d(20px, 0, 0);
-           -moz-transform: translate3d(20px, 0, 0);
-            -ms-transform: translate3d(20px, 0, 0);
-             -o-transform: translate3d(20px, 0, 0);
-                transform: translate3d(20px, 0, 0);
+        @include setPrefix('transform', 'translate3d(20px, 0, 0)');
       }
       .bB{
-        -webkit-transform: translate3d(0, 20px, 0);
-           -moz-transform: translate3d(0, 20px, 0);
-            -ms-transform: translate3d(0, 20px, 0);
-             -o-transform: translate3d(0, 20px, 0);
-                transform: translate3d(0, 20px, 0);
+        @include setPrefix('transform', 'translate3d(0, 20px, 0)');
       }
       .bL{
-        -webkit-transform: translate3d(-20px, 0, 0);
-           -moz-transform: translate3d(-20px, 0, 0);
-            -ms-transform: translate3d(-20px, 0, 0);
-             -o-transform: translate3d(-20px, 0, 0);
-                transform: translate3d(-20px, 0, 0);
+        @include setPrefix('transform', 'translate3d(-20px, 0, 0)');
       }
     }
   }
@@ -333,32 +280,16 @@
     }
     @include hoverHandler(){
       .bT{
-        -webkit-transform: translate3d(0, 20px, 0);
-           -moz-transform: translate3d(0, 20px, 0);
-            -ms-transform: translate3d(0, 20px, 0);
-             -o-transform: translate3d(0, 20px, 0);
-                transform: translate3d(0, 20px, 0);
+        @include setPrefix('transform', 'translate3d(0, 10px, 0)');
       }
       .bR{
-        -webkit-transform: translate3d(-20px, 0, 0);
-           -moz-transform: translate3d(-20px, 0, 0);
-            -ms-transform: translate3d(-20px, 0, 0);
-             -o-transform: translate3d(-20px, 0, 0);
-                transform: translate3d(-20px, 0, 0);
+        @include setPrefix('transform', 'translate3d(-20px, 0, 0)');
       }
       .bB{
-        -webkit-transform: translate3d(0, -20px, 0);
-           -moz-transform: translate3d(0, -20px, 0);
-            -ms-transform: translate3d(0, -20px, 0);
-             -o-transform: translate3d(0, -20px, 0);
-                transform: translate3d(0, -20px, 0);
+        @include setPrefix('transform', 'translate3d(0, -10px, 0)');
       }
       .bL{
-        -webkit-transform: translate3d(20px, 0, 0);
-           -moz-transform: translate3d(20px, 0, 0);
-            -ms-transform: translate3d(20px, 0, 0);
-             -o-transform: translate3d(20px, 0, 0);
-                transform: translate3d(20px, 0, 0);
+        @include setPrefix('transform', 'translate3d(20px, 0, 0)');
       }
     }
   }
@@ -415,32 +346,16 @@
     }
     @include hoverHandler(){
       .bT{
-        -webkit-transform: rotate(45deg) translate3d(0, 20px, 0);
-           -moz-transform: rotate(45deg) translate3d(0, 20px, 0);
-            -ms-transform: rotate(45deg) translate3d(0, 20px, 0);
-             -o-transform: rotate(45deg) translate3d(0, 20px, 0);
-                transform: rotate(45deg) translate3d(0, 20px, 0);
+        @include setPrefix('transform', 'rotate(45deg) translate3d(0, 10px, 0)');
       }
       .bR{
-        -webkit-transform: rotate(45deg) translate3d(-20px, 0, 0);
-           -moz-transform: rotate(45deg) translate3d(-20px, 0, 0);
-            -ms-transform: rotate(45deg) translate3d(-20px, 0, 0);
-             -o-transform: rotate(45deg) translate3d(-20px, 0, 0);
-                transform: rotate(45deg) translate3d(-20px, 0, 0);
+        @include setPrefix('transform', 'rotate(45deg) translate3d(-10px, 0, 0)');
       }
       .bB{
-        -webkit-transform: rotate(45deg) translate3d(0, -20px, 0);
-           -moz-transform: rotate(45deg) translate3d(0, -20px, 0);
-            -ms-transform: rotate(45deg) translate3d(0, -20px, 0);
-             -o-transform: rotate(45deg) translate3d(0, -20px, 0);
-                transform: rotate(45deg) translate3d(0, -20px, 0);
+        @include setPrefix('transform', 'rotate(45deg) translate3d(0, -10px, 0)');
       }
       .bL{
-        -webkit-transform: rotate(45deg) translate3d(20px, 0, 0);
-           -moz-transform: rotate(45deg) translate3d(20px, 0, 0);
-            -ms-transform: rotate(45deg) translate3d(20px, 0, 0);
-             -o-transform: rotate(45deg) translate3d(20px, 0, 0);
-                transform: rotate(45deg) translate3d(20px, 0, 0);
+        @include setPrefix('transform', 'rotate(45deg) translate3d(10px, 0, 0)');
       }
     }
   }
@@ -529,59 +444,27 @@
     }
     @include hoverHandler(){
       .bT{
-        -webkit-transform: translate3d(0, 5px, 0);
-           -moz-transform: translate3d(0, 5px, 0);
-            -ms-transform: translate3d(0, 5px, 0);
-             -o-transform: translate3d(0, 5px, 0);
-                transform: translate3d(0, 5px, 0);
+        @include setPrefix('transform', 'translate3d(0, 5px, 0)');
         &:after{
-          -webkit-transform: translate3d(0, -5px, 0);
-             -moz-transform: translate3d(0, -5px, 0);
-              -ms-transform: translate3d(0, -5px, 0);
-               -o-transform: translate3d(0, -5px, 0);
-                  transform: translate3d(0, -5px, 0);
+          @include setPrefix('transform', 'translate3d(0, -5px, 0)');
         }
       }
       .bR{
-        -webkit-transform: translate3d(-5px, 0, 0);
-           -moz-transform: translate3d(-5px, 0, 0);
-            -ms-transform: translate3d(-5px, 0, 0);
-             -o-transform: translate3d(-5px, 0, 0);
-                transform: translate3d(-5px, 0, 0);
+        @include setPrefix('transform', 'translate3d(-5px, 0, 0)');
         &:after{
-          -webkit-transform: translate3d(5px, 0, 0);
-             -moz-transform: translate3d(5px, 0, 0);
-              -ms-transform: translate3d(5px, 0, 0);
-               -o-transform: translate3d(5px, 0, 0);
-                  transform: translate3d(5px, 0, 0);
+          @include setPrefix('transform', 'translate3d(5px, 0, 0)');
         }
       }
       .bB{
-        -webkit-transform: translate3d(0, -5px, 0);
-           -moz-transform: translate3d(0, -5px, 0);
-            -ms-transform: translate3d(0, -5px, 0);
-             -o-transform: translate3d(0, -5px, 0);
-                transform: translate3d(0, -5px, 0);
+        @include setPrefix('transform', 'translate3d(0, -5px, 0)');
         &:after{
-          -webkit-transform: translate3d(0, 5px, 0);
-             -moz-transform: translate3d(0, 5px, 0);
-              -ms-transform: translate3d(0, 5px, 0);
-               -o-transform: translate3d(0, 5px, 0);
-                  transform: translate3d(0, 5px, 0);
+          @include setPrefix('transform', 'translate3d(0, 5px, 0)');
         }
       }
       .bL{
-        -webkit-transform: translate3d(5px, 0, 0);
-           -moz-transform: translate3d(5px, 0, 0);
-            -ms-transform: translate3d(5px, 0, 0);
-             -o-transform: translate3d(5px, 0, 0);
-                transform: translate3d(5px, 0, 0);
+        @include setPrefix('transform', 'translate3d(5px, 0, 0)');
         &:after{
-          -webkit-transform: translate3d(-5px, 0, 0);
-             -moz-transform: translate3d(-5px, 0, 0);
-              -ms-transform: translate3d(-5px, 0, 0);
-               -o-transform: translate3d(-5px, 0, 0);
-                  transform: translate3d(-5px, 0, 0);
+          @include setPrefix('transform', 'translate3d(-5px, 0, 0)');
         }
       }
     }
@@ -605,11 +488,7 @@
     div{
       background: #000;
       position: absolute;
-      -webkit-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
-         -moz-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
-          -ms-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
-           -o-transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
-              transition: width $duration + s $easing 0s, height $duration + s $easing 0s;
+      @include setPrefix('transition', 'width ' + $duration + 's ' + $easing + ' 0s, height ' + $duration + 's ' + $easing + ' 0s');
     }
     .bT{
       width: 100%;
@@ -640,13 +519,9 @@
       .bR,
       .bB,
       .bL{
-        width: 5px;
-        height: 5px;
+        width: $size + px;
+        height: $size + px;
       }
     }
   }
 };
-
-// =================================================================
-// Border - End
-// =================================================================

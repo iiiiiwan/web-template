@@ -9,6 +9,12 @@
       "image"       : "+++ [OG] IMAGE +++",
       "site_name"   : "+++ [OG] SITE NAME +++",
       "description" : "+++ [OG] DESCRIPTION +++"
-    }
+    },
+    "style" : [
+      "/assets/css/index.css"
+    ],
+    "script" : [
+      "/assets/js/index.js"
+    ]
   }
 }

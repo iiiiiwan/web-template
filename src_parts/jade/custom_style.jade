@@ -1,0 +1,7 @@
+//- ============================================
+//- styleInfo
+//-   cssファイルをdata.jsonから出力
+//- ============================================
+mixin styleInfo(styleArr)
+  each item in styleArr
+    link(rel='stylesheet', href=item)

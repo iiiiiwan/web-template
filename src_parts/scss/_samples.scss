@@ -1,0 +1,61 @@
+@mixin templateSample(){
+  #templateSamples{
+    // For All Sample
+    .sample{
+      padding: 40px 0;
+      >h2{
+        text-align: center;
+        margin: 0 0 40px 0;
+      }
+    }
+    // For Splite
+    #spliteImageRoot{
+      @include sprites($spritesheet-sprites);
+      text-align: center;
+      li{
+        display: inline-block;
+        margin: 0 20px 0 0;
+        &:last-child{
+          margin: 0;
+        }
+      }
+    }
+    // For Border Animation
+    #borderAnimationRoot{
+      li{
+        width: 100px;
+        height: 50px;
+        margin: 0 auto 40px;
+        background-color: #eee;
+        p{
+          line-height: 50px;
+          text-align: center;
+        }
+        &:last-child{
+          margin: 0 auto;
+        }
+        &#borderAnimation1{
+          @include hoverBorderType1();
+        }
+        &#borderAnimation2{
+          @include hoverBorderType2();
+        }
+        &#borderAnimation3{
+          @include hoverBorderType3();
+        }
+        &#borderAnimation4{
+          @include hoverBorderType4();
+        }
+        &#borderAnimation5{
+          @include hoverBorderType5();
+        }
+        &#borderAnimation6{
+          @include hoverBorderType6();
+        }
+        &#borderAnimation7{
+          @include hoverBorderType7();
+        }
+      }
+    }
+  }
+};

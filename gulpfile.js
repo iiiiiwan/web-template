@@ -1,6 +1,7 @@
 // ============================================
 // CONFIG
 // ============================================
+var PROJECT_NAME       = 'Gulp-Template';
 var ROOT               = './htdocs/';
 var DEV_ROOT           = './src/';
 var INCLUDE_PARTS_ROOT = './src_parts/';
@@ -18,8 +19,7 @@ var MODERN_JS_LIBS     = [
   'jquery-2.1.4.min.js',
   'jquery.easing.1.3.js',
   'velocity.min.js',
-  'velocity.easeplus.min.js',
-  'boombox.min.js'
+  'velocity.easeplus.min.js'
 ];
 var LEGACY_JS_LIBS     = [
   'jquery-1.11.3.min.js',
@@ -27,8 +27,6 @@ var LEGACY_JS_LIBS     = [
   'velocity.min.js',
   'velocity.easeplus.min.js'
 ];
-
-
 // ============================================
 // MODULES
 // ============================================
@@ -38,8 +36,11 @@ var gulp_data        = require('gulp-data');
 var gulp_concat      = require('gulp-concat');
 var gulp_sass        = require('gulp-sass');
 var gulp_htmlmin     = require('gulp-htmlmin');
+var gulp_strip_debug = require('gulp-strip-debug');
 var gulp_uglify      = require('gulp-uglify');
 var gulp_cssmin      = require('gulp-cssmin');
+var gulp_plumber     = require('gulp-plumber');
+var gulp_jsdoc       = require('gulp-jsdoc');
 var gulp_imagemin    = require('gulp-imagemin');
 var gulp_spritesmith = require('gulp.spritesmith');
 var browserify       = require('browserify');
@@ -49,8 +50,9 @@ var OUTPUT_TASK_LOG  = function(evt){
   console.log('     [TASK] \u001b[32m' + evt.path.replace(__dirname + '\\', '') + '\u001b[0m [' + evt.type.toUpperCase() + ']');
   console.log('\u001b[33m ------------------------------------------------------------ \u001b[0m');
 };
-
-
+var OUTPUT_ERR_LOG = function(msg){
+  console.log('\n\u001b[31m' + msg + '\u001b[0m\n');
+};
 // ============================================
 // TASK - Concat JavaScript Library [modern]
 // ============================================
@@ -77,8 +79,6 @@ gulp.task(
         gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.js)
       );
 });
-
-
 // ============================================
 // TASK - Concat JavaScript Library [legacy]
 // ============================================
@@ -101,8 +101,6 @@ gulp.task(
         gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.js)
       );
 });
-
-
 // ============================================
 // TASK - Compile .jade -> .html
 // ============================================
@@ -112,6 +110,9 @@ gulp.task(
     gulp
       .src(
         DEV_ROOT + '**/*.jade'
+      )
+      .pipe(
+        gulp_plumber()
       )
       .pipe(
         gulp_data(function(file){
@@ -136,8 +137,6 @@ gulp.task(
       );
   }
 );
-
-
 // ============================================
 // TASK - Build JavaScript
 // ============================================
@@ -149,13 +148,24 @@ gulp.task(
         DEV_ROOT + CONTENTS_SUB_ROOT + PATH.jsModule + '*.js'
       )
       .pipe(
-        through2.obj(function(file, encode, callBack){
-          browserify(file.path)
-            .bundle(function(err, res){
-              file.contents = res;
-              callBack(null, file)
-            });
-        })
+        gulp_plumber()
+      )
+      .pipe(
+        through2.obj(
+          function(file, encode, callBack){
+            browserify(file.path).bundle(
+              function(err, res){
+                if(err){
+                  OUTPUT_ERR_LOG(err.toString());
+                  return;
+                }else{
+                  file.contents = res;
+                  callBack(null, file)
+                }
+              }
+            );
+          }
+        )
       )
       .pipe(
         gulp_uglify()
@@ -165,8 +175,30 @@ gulp.task(
       );
   }
 );
-
-
+// ============================================
+// TASK - Delete Console From JavaScript
+// ============================================
+gulp.task(
+  'refine',
+  function(){
+    gulp
+      .src(
+        ROOT + CONTENTS_SUB_ROOT + PATH.js + '*.js'
+      )
+      .pipe(
+        gulp_plumber()
+      )
+      .pipe(
+        gulp_strip_debug()
+      )
+      .pipe(
+        gulp_uglify()
+      )
+      .pipe(
+        gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.js)
+      );
+  }
+);
 // ============================================
 // TASK - Compile SCSS
 // ============================================
@@ -176,6 +208,9 @@ gulp.task(
     gulp
       .src(
         DEV_ROOT + CONTENTS_SUB_ROOT + PATH.scss + '**/*.scss'
+      )
+      .pipe(
+        gulp_plumber()
       )
       .pipe(
         gulp_sass(
@@ -195,8 +230,6 @@ gulp.task(
       );
   }
 );
-
-
 // ============================================
 // TASK - Sprite Image
 // ============================================
@@ -222,17 +255,19 @@ gulp.task(
             }
           )
         );
-      spriteData.img
-        .pipe(
-          gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.image)
-        );
-      spriteData.css
-        .pipe(
-          gulp.dest(DEV_ROOT + CONTENTS_SUB_ROOT + PATH.scss)
-        );
+    spriteData.img
+      .pipe(
+        gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.image)
+      );
+    spriteData.css
+      .pipe(
+        gulp.dest(DEV_ROOT + CONTENTS_SUB_ROOT + PATH.scss)
+      );
   }
 );
-
+// ============================================
+// TASK - Minify Image
+// ============================================
 gulp.task(
   'imagemin',
   function(){
@@ -247,14 +282,12 @@ gulp.task(
         gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.image)
       );
 });
-
 // ============================================
 // TASK - Watch
 // ============================================
 gulp.task(
   'watch',
   function(){
-
     // -----------------------
     // .jade [module]
     // -----------------------
@@ -267,7 +300,6 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
     // -----------------------
     // .jade [include]
     // -----------------------
@@ -280,7 +312,6 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
     // -----------------------
     // .jade [config]
     // -----------------------
@@ -293,7 +324,6 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
     // -----------------------
     // .scss [module]
     // -----------------------
@@ -306,7 +336,6 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
     // -----------------------
     // .scss [include]
     // -----------------------
@@ -319,7 +348,6 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
     // -----------------------
     // .js [module]
     // -----------------------
@@ -332,7 +360,6 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
     // -----------------------
     // .js [include]
     // -----------------------
@@ -345,13 +372,35 @@ gulp.task(
         'change',
         OUTPUT_TASK_LOG
       );
-
   }
 );
-
-
 // ============================================
-// TASK - Default
+// TASK - Minify Image
+// ============================================
+gulp.task(
+  'docs',
+  function(){
+    gulp
+      .src(
+        [
+          'README.md',
+          DEV_ROOT + CONTENTS_SUB_ROOT + PATH.jsModule + '*.js',
+          INCLUDE_PARTS_ROOT + PATH.js + '**/*.js'
+        ]
+      )
+      .pipe(
+        gulp_jsdoc(
+          './docs/',
+          {
+            path       : './src_parts/docs_template/',
+            systemName : PROJECT_NAME,
+            linenums   : true
+          }
+        )
+      );
+});
+// ============================================
+// TASK - Default [ Dev ]
 // ============================================
 gulp.task(
   'default',
@@ -370,15 +419,17 @@ gulp.task(
     'watch'
   ]
 );
-
-
 // ============================================
 // TASK - Publish
 // ============================================
 gulp.task(
   'publish',
   [
+    // For JavaScript
+    'refine',
     // For Image
-    'imagemin'
+    'imagemin',
+    // For Document
+    'docs'
   ]
 );

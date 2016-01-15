@@ -1,0 +1,59 @@
+@import 'mixin';
+
+// [ Blur - ぼかし ]
+// @include blur();
+@mixin blur($rate:4){
+  @include setPrefix('filter', 'blur(' + $rate + 'px)');
+};
+
+// [ Drop Shadow - 影 ]
+// @include dropShadow();
+@mixin dropShadow($rate:4, $color:#000){
+  @include setPrefix('filter', 'drop-shadow(' + $rate + 'px ' + $rate + 'px ' + $rate + 'px ' + $color')');
+};
+
+// [ Invert - 階調反転 ]
+// @include invert();
+@mixin invert($rate:100){
+  @include setPrefix('filter', 'invert(' + $rate + '%)');
+};
+
+// [ Sepia - セピア ]
+// @include sepia();
+@mixin sepia($rate:100){
+  @include setPrefix('filter', 'sepia(' + $rate + '%)');
+};
+
+// [ Grayscale - 白黒 ]
+// @include grayscale();
+@mixin grayscale($rate:100){
+  @include setPrefix('filter', 'grayscale(' + $rate + '%)');
+};
+
+// [ Brightness - 明るさ ]
+// @include brightness();
+// ※100超えると、まぶしくなる！
+@mixin brightness($rate:100){
+  @include setPrefix('filter', 'brightness(' + $rate + '%)');
+};
+
+// [ Saturate - 彩度 ]
+// @include saturate();
+// ※100超えると、鮮やかになる！
+@mixin saturate($rate:100){
+  @include setPrefix('filter', 'saturate(' + $rate + '%)');
+};
+
+// [ Hue Rotate - 色相回転 ]
+// @include huaRotate();
+// ※0 - 360まで指定可能！
+@mixin huaRotate($rate:90){
+  @include setPrefix('filter', 'hue-rotate(' + $rate + 'deg)');
+};
+
+// [ Contrast - コントラスト ]
+// @include contrast();
+// ※100超えると、クッキリする！
+@mixin contrast($rate:100){
+  @include setPrefix('filter', 'contrast(' + $rate + '%)');
+};

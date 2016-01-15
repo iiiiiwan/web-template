@@ -1,0 +1,7 @@
+//- ============================================
+//- scriptInfo
+//-   jsファイルをdata.jsonから出力
+//- ============================================
+mixin scriptInfo(scriptArr)
+  each item in scriptArr
+    script(type='text/javascript' src=item)
