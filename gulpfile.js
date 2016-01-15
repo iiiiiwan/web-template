@@ -266,6 +266,26 @@ gulp.task(
   }
 );
 // ============================================
+// TASK - Copy Images
+// ============================================
+gulp.task(
+  'copy',
+  function(){
+    gulp
+      .src(
+        [
+          DEV_ROOT + CONTENTS_SUB_ROOT + PATH.image + '**/*.jpg',
+          DEV_ROOT + CONTENTS_SUB_ROOT + PATH.image + '**/*.png',
+          DEV_ROOT + CONTENTS_SUB_ROOT + PATH.image + '**/*.gif',
+          '!' + DEV_ROOT + CONTENTS_SUB_ROOT + PATH.image + 'sprite/*.png'
+        ]
+      )
+      .pipe(
+        gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.image)
+      );
+  }
+);
+// ============================================
 // TASK - Minify Image
 // ============================================
 gulp.task(
@@ -415,6 +435,7 @@ gulp.task(
     'jade',
     // For Image
     'sprite',
+    'copy',
     // For Watch
     'watch'
   ]

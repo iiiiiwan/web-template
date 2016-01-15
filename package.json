@@ -8,12 +8,12 @@
   },
   "dependencies": {
     "browserify": "^12.0.1",
+    "gulp-assemble": "^0.3.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
-    "gulp-assemble": "^0.3.2",
     "gulp-cssmin": "^0.1.7",
-    "gulp-htmlmin": "^1.3.0",
     "gulp-data": "^1.2.1",
+    "gulp-htmlmin": "^1.3.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-jade": "^1.1.0",
     "gulp-plumber": "^1.0.1",
@@ -32,6 +32,6 @@
     "type": "git",
     "url": "/cygdrive/c/Users/Rustywoman/Dropbox/workspace/git/template/gulp.git"
   },
-  "author": "w.y",
+  "author": "",
   "license": "ISC"
 }

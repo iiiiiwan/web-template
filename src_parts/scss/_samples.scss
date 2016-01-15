@@ -1,3 +1,6 @@
+// =================================================================
+// Sample
+// =================================================================
 @mixin templateSample(){
   #templateSamples{
     // For All Sample
@@ -54,6 +57,67 @@
         }
         &#borderAnimation7{
           @include hoverBorderType7();
+        }
+      }
+    }
+    // For Filter Image
+    #filterImageRoot{
+      li{
+        margin: 0 auto 40px;
+        text-align: center;
+        p.img{
+          background-image: url(/assets/img/sample.gif);
+          background-size: 306px 351px;
+          background-repeat: no-repeat;
+          background-position: center center;
+          width: 306px;
+          height: 351px;
+          margin: 0 auto;
+        }
+        &#filter1{
+          p.img{
+            @include blur();
+          }
+        }
+        &#filter2{
+          p.img{
+            @include dropShadow();
+          }
+        }
+        &#filter3{
+          p.img{
+            @include invert();
+          }
+        }
+        &#filter4{
+          p.img{
+            @include sepia();
+          }
+        }
+        &#filter5{
+          p.img{
+            @include grayscale();
+          }
+        }
+        &#filter6{
+          p.img{
+            @include brightness();
+          }
+        }
+        &#filter7{
+          p.img{
+            @include saturate();
+          }
+        }
+        &#filter8{
+          p.img{
+            @include huaRotate();
+          }
+        }
+        &#filter9{
+          p.img{
+            @include contrast();
+          }
         }
       }
     }

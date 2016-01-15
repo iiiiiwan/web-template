@@ -4,6 +4,7 @@
 @import '../../../src_parts/scss/_font_face.scss';
 @import '../../../src_parts/scss/_hover.scss';
 @import '../../../src_parts/scss/_filter.scss';
+@import '../../../src_parts/scss/_animate.scss';
 @import '../../../src_parts/scss/_settings.scss';
 
 @import '../../../src_parts/scss/_samples.scss';
@@ -16,6 +17,8 @@
   font-family: 'Lato', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'MS PGothic', 'MS UI Gothic', sans-serif;
   letter-spacing: 0.5px;
   color: $font-color;
+
+  @include jumble();
 
   @include templateSample();
 
