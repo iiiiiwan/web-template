@@ -18,12 +18,14 @@ var PATH               = {
 var MODERN_JS_LIBS     = [
   'jquery-2.1.4.min.js',
   'jquery.easing.1.3.js',
+  'jquery-migrate-1.2.1.js',
   'velocity.min.js',
   'velocity.easeplus.min.js'
 ];
 var LEGACY_JS_LIBS     = [
   'jquery-1.11.3.min.js',
   'jquery.easing.1.3.js',
+  'jquery-migrate-1.2.1.js',
   'velocity.min.js',
   'velocity.easeplus.min.js'
 ];
@@ -167,9 +169,9 @@ gulp.task(
           }
         )
       )
-      .pipe(
-        gulp_uglify()
-      )
+      // .pipe(
+      //   gulp_uglify()
+      // )
       .pipe(
         gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.js)
       );

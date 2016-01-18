@@ -23,6 +23,22 @@
         }
       }
     }
+
+    #slickRoot{
+      overflow: hidden;
+      ul{
+        li.img{
+          background-image: url(/assets/img/sample.gif);
+          background-size: 306px 351px;
+          background-repeat: no-repeat;
+          background-position: center center;
+          width: 306px;
+          height: 351px;
+          margin: 0 auto;
+        }
+      }
+    }
+
     // For Border Animation
     #borderAnimationRoot{
       li{
