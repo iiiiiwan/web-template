@@ -11,6 +11,9 @@
 @import '../../../src_parts/scss/_slick.scss';
 @import '_sprite.scss';
 
+@import '../../../src_parts/scss/_header.scss';
+@import '../../../src_parts/scss/_footer.scss';
+
 #content{
 
   @include getRem($font-size);
@@ -23,21 +26,20 @@
 }
 
 body{
-
   &.___marker{}
-
   &.___hover{}
-
   &.___error{}
-
   &.___loading{}
-
-  &.___pc{}
-
-  &.___ie{}
-
-  &.___tablet{}
-
-  &.___cellphone{}
-
+  &.___pc_chrome{}
+  &.___pc_safari{}
+  &.___pc_opera{}
+  &.___pc_firefox{}
+  &.___ie_8{}
+  &.___ie_9{}
+  &.___ie_10{}
+  &.___ie_edge{}
+  &.___tablet_ipad{}
+  &.___tablet_android{}
+  &.___cellphone_iphone{}
+  &.___cellphone_android{}
 }

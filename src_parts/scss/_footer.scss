@@ -1,0 +1,12 @@
+@import 'settings';
+@import 'mixin';
+
+// =================================================================
+// Footer
+// =================================================================
+footer{
+  @include getRem($font-size * 1.2);
+  background-color: #212121;
+  color: #fff;
+  text-align: center;
+}

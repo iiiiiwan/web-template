@@ -171,32 +171,38 @@ var COMMON = {
      * @return {null} null
     */
     setRedirectMarker : function(){
-      if(
-        COMMON.config.ua.indexOf('iphone') > 0 ||
-        COMMON.config.ua.indexOf('android') > 0 && COMMON.config.ua.indexOf('mobile') > 0
-      ){
-        // SP
-        COMMON.cache._b.addClass(COMMON.marker.cellphone);
-      }else if(COMMON.config.ua.indexOf('ipad') > 0 || COMMON.config.ua.indexOf('android') > 0){
-        // TAB
-        COMMON.cache._b.addClass(COMMON.marker.tablet);
+      if(COMMON.config.ua.indexOf('iphone') > 0){
+        // SP [ iphone ]
+        COMMON.cache._b.addClass(COMMON.marker.cellphone + '_iphone');
+      }else if(COMMON.config.ua.indexOf('ipad') > 0){
+        // TAB [ ipad ]
+        COMMON.cache._b.addClass(COMMON.marker.tablet + '_ipad');
+      }else if(COMMON.config.ua.indexOf('android') > 0){
+        if(COMMON.config.ua.indexOf('mobile') > 0){
+          // SP [ android ]
+          COMMON.cache._b.addClass(COMMON.marker.cellphone + '_android');
+        }else{
+          // TAB [ android ]
+          COMMON.cache._b.addClass(COMMON.marker.tablet + '_android');
+        }
       }else if(COMMON.config.ua.match(/msie/) || COMMON.config.ua.match(/trident/)){
-        // IE
-        COMMON.cache._b.addClass(COMMON.marker.ie);
+        // PC [ Legacy IE ]
+        COMMON.cache._b.addClass(
+          COMMON.marker.ie + '_' + parseInt(COMMON.config.ua.match(/(msie\s|rv:)([\d\.]+)/)[2])
+        );
+      }else if(COMMON.config.ua.match(/edge/)){
+        // PC [ Edge ]
+        COMMON.cache._b.addClass(COMMON.marker.ie + '_edge');
       }else{
-        // PC [ firefox , chrome , opera -> re-recheck ]
-        COMMON.cache._b.addClass(COMMON.marker.pc);
-        // ---------------------------------------------
-        // Inner Check
-        // ---------------------------------------------
+        // PC [ chrome, safari, opera, firefox ]
         if(COMMON.config.ua.indexOf('chrome') != -1){
-          console.warn('=== chrome ===');
+          COMMON.cache._b.addClass(COMMON.marker.pc + '_chrome');
         }else if(COMMON.config.ua.indexOf('safari') != -1){
-          console.warn('=== safari ===');
+          COMMON.cache._b.addClass(COMMON.marker.pc + '_safari');
         }else if(COMMON.config.ua.indexOf('opera') != -1){
-          console.warn('=== opera ===');
+          COMMON.cache._b.addClass(COMMON.marker.pc + '_opera');
         }else if(COMMON.config.ua.indexOf('firefox') != -1){
-          console.warn('=== firefox ===');
+          COMMON.cache._b.addClass(COMMON.marker.pc + '_firefox');
         }
       }
     }

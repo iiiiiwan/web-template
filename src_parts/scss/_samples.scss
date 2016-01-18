@@ -5,9 +5,14 @@
 
   #templateSamples{
 
+    border-top: 1px solid #212121;
+    @include defaultBoxSizing();
+
     // For All Sample
     .sample{
       padding: 40px 0;
+      border-bottom: 1px solid #212121;
+      @include defaultBoxSizing();
       >h2{
         text-align: center;
         margin: 0 0 40px 0;
@@ -44,7 +49,6 @@
 
     // For Slick (Image Gallery)
     #slickRoot{
-      overflow: hidden;
       ul{
         li.img{
           background-image: url(/assets/img/sample.gif);
@@ -60,17 +64,19 @@
 
     // For Border Animation
     #borderAnimationRoot{
+      text-align: center;
       li{
         width: 100px;
         height: 50px;
-        margin: 0 auto 40px;
+        margin: 0 40px 0 0;
         background-color: #eee;
+        display: inline-block;
         p{
           line-height: 50px;
           text-align: center;
         }
         &:last-child{
-          margin: 0 auto;
+          margin: 0;
         }
         &#borderAnimation1{
           @include hoverBorderType1();
@@ -99,7 +105,6 @@
     // For Filter Image
     #filterImageRoot{
       li{
-        margin: 0 auto 40px;
         text-align: center;
         p.img{
           background-image: url(/assets/img/sample.gif);
@@ -108,7 +113,7 @@
           background-position: center center;
           width: 306px;
           height: 351px;
-          margin: 0 auto;
+          margin: 0 auto 15px;
         }
         &#filter1{
           p.img{
