@@ -169,9 +169,9 @@ gulp.task(
           }
         )
       )
-      // .pipe(
-      //   gulp_uglify()
-      // )
+      .pipe(
+        gulp_uglify()
+      )
       .pipe(
         gulp.dest(ROOT + CONTENTS_SUB_ROOT + PATH.js)
       );

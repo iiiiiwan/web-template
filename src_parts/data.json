@@ -11,10 +11,10 @@
       "description" : "+++ [OG] DESCRIPTION +++"
     },
     "style" : [
-      "/assets/css/index.css"
+      "/assets/css/template.css"
     ],
     "script" : [
-      "/assets/js/index.js"
+      "/assets/js/template.js"
     ]
   }
 }

@@ -77,15 +77,14 @@
 				anchorName  : function ( i, heading, prefix ) {
 					return $( heading ).attr( "id" ) || ( prefix + i );
 				},
-				selectors   : "h1,h2,h3,h4",
-				showAndHide : false,
-				scrollTo    : "100px"
+				selectors   : "h4",
+				highlightOnScroll : false
 			} );
 
 			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
 			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 			$( '.dropdown-toggle' ).dropdown();
-//			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
+			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
 
 			$( ".tutorial-section pre, .readme-section pre" ).each( function () {
 				var $this = $( this );
@@ -114,6 +113,10 @@
 			$('.readme-section').find('table').each(function(){
 				$(this).addClass('table');
 			});
+
+			if(location.href.indexOf('index.html') != -1){
+				$( "#toc" ).hide();
+			}
 
 			Sunlight.highlightAll( {
 				lineNumbers : <?js= this.navOptions.linenums || false ?>,

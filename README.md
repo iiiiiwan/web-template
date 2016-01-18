@@ -1,16 +1,16 @@
 <br>
 
-各案件について
+# About
 
 <br>
 
-> ほげほげ。
+> hogehoge
 
 <br>
 ---
 <br>
 
-ビルド環境
+# Build
 
 <br>
 
@@ -24,23 +24,23 @@
 
 | Command      | Detail                            |
 |--------------|-----------------------------------|
-| gulp         | ローカル環境用のビルドコマンド              |
-| gulp publish | 納品用のビルドコマンド                   |
+| gulp         | Build For Dev. Environment        |
+| gulp publish | Build For Pub. Environment        |
 
 <br>
 
 | Task       | Command                   | Detail                            |
 |------------|---------------------------|-----------------------------------|
-| concat     | gulp modern_jslibs_concat | 共通ライブラリ(libs.js)を生成           |
-| concat     | gulp legacy_jslibs_concat | IE8用ライブラリ(legacy.libs.js)を生成   |
-| jade       | gulp jade                 | .htmlファイルを生成                    |
-| browserify | gulp browserify           | .jsファイルを生成                      |
-| refine     | gulp refine               | .jsファイルからコメント、consoleを削除      |
-| sass       | gulp sass                 | .cssファイルを生成                    |
-| sprite     | gulp sprite               | スプライト画像とスプライト用scssファイルを生成  |
-| imagemin   | gulp imagemin             | 画像を圧縮                          |
-| watch      | gulp watch                | 各資源の変更監視                     |
-| docs       | gulp docs                 | .jsファイル用ドキュメントを生成            |
+| concat     | gulp modern_jslibs_concat | Generate 'libs.js'                |
+| concat     | gulp legacy_jslibs_concat | Generate 'legacy.libs.js'         |
+| jade       | gulp jade                 | Build '.html'                     |
+| browserify | gulp browserify           | Build '.js'                       |
+| refine     | gulp refine               | Delete Console From '.js'         |
+| sass       | gulp sass                 | Build '.css'                      |
+| sprite     | gulp sprite               | Generate Splited Image + SCSS     |
+| imagemin   | gulp imagemin             | Compress Images                   |
+| watch      | gulp watch                | Watch                             |
+| docs       | gulp docs                 | Generate Document For '.js'       |
 
 <br>
 ---

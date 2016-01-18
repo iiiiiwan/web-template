@@ -1,16 +1,16 @@
-// ----------------------------------------------------------------------
+// ========================================================
 // VALIDATE
-// ----------------------------------------------------------------------
+// ========================================================
 /**
  * @namespace VALIDATE
  * @type {object}
  */
 var VALIDATE = {
   /**
-   * 空文字判定 + 全角を半角に変換
+   * Check Empty + 2 bytes' String
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} 空文字判定結果
+   * @param {string} str - Target String
+   * @return {boolean} result (Empty Or Not)
   */
   filter : function(str){
     try{
@@ -27,11 +27,11 @@ var VALIDATE = {
     }
   },
   /**
-   * 文字列のバイト数確認
+   * Check Byte
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @param {boolean} flg - 全角チェックフラグ
-   * @return {boolean} 全角か否か
+   * @param {string} str  - Target String
+   * @param {boolean} flg - 2 Bytes' Check Flg
+   * @return {boolean} result (2 Bytes Or Not)
   */
   checkString : function(str, flg){
     for(var i = 0, il = str.length; i < il; i++){
@@ -54,10 +54,10 @@ var VALIDATE = {
     return false;
   },
   /**
-   * 半角か否か確認
+   * Check Half Size
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} 半角か否か
+   * @param {string} str - Target String
+   * @return {boolean} result (Half Size Or Not)
   */
   checkOneByteStr : function(str){
     var strCache = VALIDATE.filter(str);
@@ -68,10 +68,10 @@ var VALIDATE = {
     }
   },
   /**
-   * 全角か否か確認
+   * Check 2 Bytes
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} 全角か否か
+   * @param {string} str - Target String
+   * @return {boolean} result (2 Bytes Or Not)
   */
   checkTwoByteStr : function(str){
     var strCache = VALIDATE.filter(str);
@@ -82,10 +82,10 @@ var VALIDATE = {
     }
   },
   /**
-   * カナ文字か否か確認
+   * Check Kana
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} カナ文字か否か
+   * @param {string} str - Target String
+   * @return {boolean} result (Kana Or Not)
   */
   checkAllKanaStr : function(str){
     var strCache = VALIDATE.filter(str);
@@ -101,10 +101,10 @@ var VALIDATE = {
     }
   },
   /**
-   * 半角数字か否か確認
+   * Check Number (Half Size)
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} 半角数字か否か
+   * @param {string} str - Target String
+   * @return {boolean} result (Number Or Not)
   */
   checkAllNumStr : function(str){
     var strCache = VALIDATE.filter(str);
@@ -119,10 +119,10 @@ var VALIDATE = {
     }
   },
   /**
-   * メールアドレスか否か確認
+   * Check Mail Address
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} メールアドレスか否か
+   * @param {string} str - Target String
+   * @return {boolean} result (Mail Address Or Not)
   */
   checkMailStr : function(str){
     var strCache = VALIDATE.filter(str);
@@ -137,10 +137,10 @@ var VALIDATE = {
     }
   },
   /**
-   * マイナンバーか確認
+   * Check My Number
    * @memberof VALIDATE
-   * @param {string} str - Validation対象文字列
-   * @return {boolean} マイナンバーか否か
+   * @param {string} str - Target String
+   * @return {boolean} result (My Number Or Not)
   */
   checkMyNumber : function(str){
     var strNum = str.length;

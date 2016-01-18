@@ -9,8 +9,8 @@ $.fn.toc = function(options) {
   var activeClassName = opts.prefix+'-active';
 
   var scrollTo = function(e) {
-    $('li', self).removeClass(activeClassName);
-    $(e.target).parent().addClass(activeClassName);
+    // $('li', self).removeClass(activeClassName);
+    // $(e.target).parent().addClass(activeClassName);
   };
 
   //highlight on scroll

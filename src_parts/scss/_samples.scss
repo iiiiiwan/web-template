@@ -2,7 +2,9 @@
 // Sample
 // =================================================================
 @mixin templateSample(){
+
   #templateSamples{
+
     // For All Sample
     .sample{
       padding: 40px 0;
@@ -11,7 +13,23 @@
         margin: 0 0 40px 0;
       }
     }
-    // For Splite
+
+    // For Css Animation
+    #cssAnimationRoot{
+      text-align: center;
+      &.jumble{
+        @include jumble();
+      }
+      li{
+        display: inline-block;
+        margin: 0 20px 0 0;
+        &:last-child{
+          margin: 0;
+        }
+      }
+    }
+
+    // For Splite Image
     #spliteImageRoot{
       @include sprites($spritesheet-sprites);
       text-align: center;
@@ -24,6 +42,7 @@
       }
     }
 
+    // For Slick (Image Gallery)
     #slickRoot{
       overflow: hidden;
       ul{
@@ -76,6 +95,7 @@
         }
       }
     }
+
     // For Filter Image
     #filterImageRoot{
       li{
@@ -137,5 +157,7 @@
         }
       }
     }
+
   }
+
 };

@@ -4,35 +4,41 @@
 /**
  * @namespace COMMON
  * @type {object}
- * @prop {object} cache            - 共通DOMキャッシュ
- * @prop {object} cache._w         - Window Via jQuery
- * @prop {object} cache._d         - Document Via jQuery
- * @prop {object} cache._b         - Body Via jQuery
- * @prop {object} cache._r         - Html + Body Via jQuery
- * @prop {object} config           - ブラウザ基本情報
- * @prop {object} config.ua        - User Agent [ lowercase ]
- * @prop {object} config.app       - App Version [ lowercase ]
- * @prop {object} marker           - 共通クラス情報
- * @prop {object} marker.def       - マーカークラス [ '___marker'    ]
- * @prop {object} marker.hover     - マーカークラス [ '___hover'     ]
- * @prop {object} marker.err       - マーカークラス [ '___error'     ]
- * @prop {object} marker.loading   - マーカークラス [ '___loading'   ]
- * @prop {object} marker.pc        - マーカークラス [ '___pc'        ]
- * @prop {object} marker.ie        - マーカークラス [ '___ie'        ]
- * @prop {object} marker.tablet    - マーカークラス [ '___tablet'    ]
- * @prop {object} marker.cellphone - マーカークラス [ '___cellphone' ]
  */
 var COMMON = {
+  /**
+   * @namespace COMMON.cache
+   * @prop {object} _w - Window Via jQuery
+   * @prop {object} _d - Document Via jQuery
+   * @prop {object} _b - Body Via jQuery
+   * @prop {object} _r - Html + Body Via jQuery
+   */
   cache : {
     _w : null,
     _d : null,
     _b : null,
     _r : null
   },
+  /**
+   * @namespace COMMON.config
+   * @prop {string} ua  - User Agent [ lowercase ]
+   * @prop {string} app - App Version [ lowercase ]
+  */
   config : {
     ua       : window.navigator.userAgent.toLowerCase(),
     app      : window.navigator.appVersion.toLowerCase()
   },
+  /**
+   * @namespace COMMON.marker
+   * @prop {string} def       - ___marker
+   * @prop {string} hover     - ___hover
+   * @prop {string} err       - ___error
+   * @prop {string} loading   - ___loading
+   * @prop {string} pc        - ___pc
+   * @prop {string} ie        - ___ie
+   * @prop {string} tablet    - ___tablet
+   * @prop {string} cellphone - ___cellphone
+  */
   marker : {
     def       : null,
     hover     : null,
@@ -44,13 +50,13 @@ var COMMON = {
     cellphone : null
   },
   /**
-   * @namespace COMMON > handle
+   * @namespace COMMON.handle
   */
   handle : {
     /**
-     * URLからパラメータを取得
-     * @memberof COMMON > handle
-     * @return {object.<string, string>} パラメータオブジェクト
+     * Get URL Parameter
+     * @memberof COMMON.handle
+     * @return {object.<string, string>} Parameter 'Key-Value' Object
     */
     param : function(){
       var resultParam = {};
@@ -68,10 +74,10 @@ var COMMON = {
       }
     },
     /**
-     * 画像を先読み
-     * @memberof COMMON > handle
-     * @param {array} imgArr - 画像ファイルパスを要素とする配列
-     * @return {null}
+     * Load Image
+     * @memberof COMMON.handle
+     * @param {array} imgArr - Image Path Array
+     * @return {null} null
     */
     preload : function(imgArr){
       var imgCache = null;
@@ -81,13 +87,13 @@ var COMMON = {
       }
     },
     /**
-     * 初期表示
-     * @memberof COMMON > handle
-     * @param {number}   duration  - 表示アニメーションのインターバル
-     * @param {string}   easing    - イージングタイプ名
-     * @param {function} bCallBack - 事「前」コールバック関数
-     * @param {function} aCallBack - 事「後」コールバック関数
-     * @return {null}
+     * View
+     * @memberof COMMON.handle
+     * @param {number}   duration  - Duration
+     * @param {string}   easing    - Easing
+     * @param {function} bCallBack - 1st CallBack
+     * @param {function} aCallBack - 2nd CallBack
+     * @return {null} null
     */
     view : function(duration, easing, bCallBack, aCallBack){
       COMMON.cache._b
@@ -112,11 +118,11 @@ var COMMON = {
       );
     },
     /**
-     * CSSアニメーションの終了検知
-     * @memberof COMMON > handle
-     * @param {object} elm        - jQuery Element Object
-     * @param {function} callBack - CSSアニメーション終了時のコールバック関数
-     * @return {null}
+     * Bind Css Animation End
+     * @memberof COMMON.handle
+     * @param {object} elm        - jQuery Element Object @ Css Animation
+     * @param {function} callBack - CallBack After Css Animation Ended
+     * @return {null} null
     */
     bindAnimationEnd : function(elm, callBack){
       elm.on(
@@ -129,8 +135,8 @@ var COMMON = {
       );
     },
     /**
-     * イベントの抹殺
-     * @memberof COMMON > handle
+     * Kill User Event
+     * @memberof COMMON.handle
      * @param {object} evt - jQuery Event Object
      * @return {boolean} false
     */
@@ -140,9 +146,9 @@ var COMMON = {
       return false;
     },
     /**
-     * スマホ用にホバーを設定
-     * @memberof COMMON > handle
-     * @return {null}
+     * Bind Hover Action For Cellphone
+     * @memberof COMMON.handle
+     * @return {null} null
     */
     customHover : function(){
       $('a')
@@ -160,9 +166,9 @@ var COMMON = {
         );
     },
     /**
-     * 端末判定リダイレクト
-     * @memberof COMMON > handle
-     * @return {null}
+     * Set Redirect Marker
+     * @memberof COMMON.handle
+     * @return {null} null
     */
     setRedirectMarker : function(){
       if(
@@ -196,13 +202,13 @@ var COMMON = {
     }
   },
   /**
-   * 初期化
+   * Initialize<br><br> - COMMON.handle.setRedirectMarker<br> - COMMON.handle.customHover<br> - COMMON.handle.view
    * @memberof COMMON
-   * @param {number} duration    - 初期表示のタイミング
-   * @param {string} easing      - 初期表示のイージング名
-  　* @param {function} bCallBack - 事「前」コールバック関数
-  　* @param {function} aCallBack - 事「後」コールバック関数
-   * @return {null}
+   * @param {number} duration    - Duration For COMMON.handle.view
+   * @param {string} easing      - Easing For COMMON.handle.view
+  　* @param {function} bCallBack - 1st CallBack For COMMON.handle.view
+  　* @param {function} aCallBack - 2nd CallBack For COMMON.handle.view
+   * @return {null} null
   */
   init : function(duration, easing, bCallBack, aCallBack){
     COMMON.cache = {

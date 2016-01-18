@@ -8,9 +8,7 @@
 @import '../../../src_parts/scss/_settings.scss';
 
 @import '../../../src_parts/scss/_samples.scss';
-
 @import '../../../src_parts/scss/_slick.scss';
-
 @import '_sprite.scss';
 
 #content{
@@ -19,8 +17,6 @@
   font-family: 'Lato', 'ヒラギノ角ゴ Pro W3', 'メイリオ', 'MS PGothic', 'MS UI Gothic', sans-serif;
   letter-spacing: 0.5px;
   color: $font-color;
-
-  @include jumble();
 
   @include templateSample();
 

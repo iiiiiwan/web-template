@@ -1,28 +1,20 @@
 // ========================================================
-// POLYFILLs
-// ========================================================
-if(!String.prototype.trim){
-  String.prototype.trim = function(){
-    return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-  };
-}
-// ========================================================
 // CONFIG
 // ========================================================
 /**
  * @namespace CONFIG
  * @type {object}
- * @prop {object} stack                     - 共通設定
- * @prop {object} stack.logFlg              - ログ出力するか否か
- * @prop {object} stack.defaultDuration     - 各アニメーションの基本タイミング
- * @prop {object} stack.defaultEasing       - 各アニメーションの基本イージング名
- * @prop {object} stack.styleObj            - 共通スタイル
- * @prop {object} stack.styleObj.opacityOn  - opacity:1;
- * @prop {object} stack.styleObj.opacityOff - opacity:0;
  */
 var CONFIG = {
+  /**
+   * @namespace CONFIG.stack
+   * @prop {object} stack.defaultDuration     - Default Duration
+   * @prop {object} stack.defaultEasing       - Default Easing
+   * @prop {object} stack.styleObj            - Cache For Style Object
+   * @prop {object} stack.styleObj.opacityOn  - opacity:1;
+   * @prop {object} stack.styleObj.opacityOff - opacity:0;
+   */
   stack : {
-    logFlg          : true,
     defaultDuration : 800,
     minimumDuration : 10,
     defaultEasing   : 'easeInOutQuart',
@@ -36,11 +28,16 @@ var CONFIG = {
     }
   },
   /**
-   * 初期化
+   * Initialize<br><br> - String.prototype.trim<br> - window.requestAnimationFrame<br> - window.cancelAnimationFrame<br> - window.console
    * @memberof CONFIG
    * @return {object} CONFIG
   */
   init : function(){
+    if(!String.prototype.trim){
+      String.prototype.trim = function(){
+        return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+      };
+    }
     window.requestAnimationFrame = null;
     window.cancelAnimationFrame = null;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -56,7 +53,7 @@ var CONFIG = {
         return clearTimeout(timerId);
       };
     }
-    if(!window.console || !CONFIG.stack.logFlg){
+    if(!window.console){
       window.console = {
         log   : function(msg){},
         warn  : function(msg){},
