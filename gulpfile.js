@@ -158,7 +158,10 @@ gulp.task(
             browserify(
               {
                 entries : [file.path],
-                paths   : ['./node_modules', './src_parts/js']
+                paths   : [
+                  './node_modules',
+                  INCLUDE_PARTS_ROOT + PATH.js
+                ]
               }
             ).bundle(
               function(err, res){
@@ -222,7 +225,10 @@ gulp.task(
       .pipe(
         gulp_sass(
           {
-            outputStyle : 'expanded'
+            outputStyle  : 'expanded',
+            includePaths : [
+              INCLUDE_PARTS_ROOT + PATH.scss
+            ]
           }
         ).on(
           'error',

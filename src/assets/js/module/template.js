@@ -2,9 +2,10 @@ $(function(){
   // ========================================================
   // CONFIG
   // ========================================================
-  var CONFIG        = require('config');
-  var COMMON        = require('common');
-  var GULP_TEMPLATE = {};
+  var CONFIG            = require('config');
+  var COMMON            = require('common');
+  var SlickHandlerKlass = require('klass/Slick');
+  var GULP_TEMPLATE     = {};
   // ========================================================
   // PROJECT - DEFINITION
   // ========================================================
@@ -29,7 +30,6 @@ $(function(){
       // --------------------------------------------
       // SLICK
       // --------------------------------------------
-      var SlickHandlerKlass = require('../../../../src_parts/js/klass/Slick.js');
       new SlickHandlerKlass($('#slickRoot ul')).init();
       new SlickHandlerKlass(
         $('#filterImageRoot ul'),
