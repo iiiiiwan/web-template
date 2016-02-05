@@ -155,7 +155,12 @@ gulp.task(
       .pipe(
         through2.obj(
           function(file, encode, callBack){
-            browserify(file.path).bundle(
+            browserify(
+              {
+                entries : [file.path],
+                paths   : ['./node_modules', './src_parts/js']
+              }
+            ).bundle(
               function(err, res){
                 if(err){
                   OUTPUT_ERR_LOG(err.toString());

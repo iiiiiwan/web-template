@@ -2,8 +2,8 @@ $(function(){
   // ========================================================
   // CONFIG
   // ========================================================
-  var CONFIG       = require('../../../../src_parts/js/config.js');
-  var COMMON       = require('../../../../src_parts/js/common.js');
+  var CONFIG        = require('config');
+  var COMMON        = require('common');
   var GULP_TEMPLATE = {};
   // ========================================================
   // PROJECT - DEFINITION
